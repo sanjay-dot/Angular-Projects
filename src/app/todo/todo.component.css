@@ -1,0 +1,10 @@
+#holder{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+#card{
+    background-color: salmon !important;
+    width: 200px;
+    height: 15vh;
+}

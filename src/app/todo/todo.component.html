@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="container bg-dark p-5 mt-3">
+    <h1 class="text-center text-white">TODO</h1>
+  </div>
+
+  <div class="container mt-3 bg-secondary p-3 rounded">
+    <div class="d-flex flex-row justify-content-around">
+      <input
+        type="text"
+        class="form-control col-md-6 ml-5"
+        placeholder="Enter the task here!!"
+        [(ngModel)]="EnteredValue" 
+      />
+      
+      <button class="btn btn-danger col-md-2 ml-4" (click)="SubmitHandler()">
+        Add
+      </button>
+    </div>
+  </div>
+  <div *ngIf="data != 0">
+    <div id="holder" class="container mt-4">
+      <div *ngFor="let x of data">
+        <div class="card text-center" id="card">
+          <button class="btn btn-danger" (click)="DeleteHandler(x.id)">
+            Close
+          </button>
+          <h5 class="card-title mt-4">{{ x.Desc }}</h5>
+          <h6>created at :{{x.Time | date:'medium'}}</h6>
+          <button class="btn btn-danger" (click)="UpdateHandler(content,x.id)">
+            Update
+          </button>
+
+          <ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Update</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="update">Update</label>
+                  <div class="input-group">
+                    <input id="update" class="form-control" placeholder={{x.Desc}} (input)="updater($event)" name="updateValue"> 
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark"(click)="ChangeHandler(x.id)">Update</button>
+            </div>
+          </ng-template>  
+        </div>
+      </div>
+    </div>  
+  </div>
+</div>
